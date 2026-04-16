@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Working Formula - คลังข้อมูลการเตรียมยา</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #004d40; /* สีเขียวเข้มแบบสาธารณสุข */
             --accent-color: #00897b;
             --bg-color: #f1f5f9;
+            --number-color: #b71c1c; /* สีแดงสำหรับตัวเลขหัวข้อย่อย */
+            --disabled-color: #bdc3c7; /* สีเทาสำหรับปุ่มที่ยังไม่พร้อมใช้ */
         }
         body {
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Sarabun', sans-serif; /* ใช้ฟอนต์ Sarabun ทั้งหมด */
             line-height: 1.5;
             background-color: var(--bg-color);
             margin: 0;
@@ -27,18 +30,20 @@
         }
         .header {
             text-align: center;
-            border-bottom: 4px solid var(--primary-color);
+            /* เอาเส้น border-bottom ออกตามคำขอ */
             margin-bottom: 30px;
-            padding-bottom: 15px;
+            padding-bottom: 5px;
         }
-        h1 { color: var(--primary-color); margin: 0; font-size: 1.8em; }
+        h1 { color: var(--primary-color); margin: 0; font-size: 1.8em; font-weight: 700; }
+        p.hospital-name { font-weight: 500; color: #555; margin-top: 5px; }
+
         .category-block { margin-bottom: 30px; }
         .category-title {
             background-color: var(--primary-color);
             color: white;
             padding: 12px 20px;
             border-radius: 8px 8px 0 0;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1.1em;
         }
         ul { list-style: none; padding: 0; margin: 0; border: 1px solid #e2e8f0; border-top: none; }
@@ -52,8 +57,10 @@
         }
         li:last-child { border-bottom: none; }
         li:hover { background-color: #f8fafc; }
+        
+        .drug-number { color: var(--number-color); font-weight: 700; margin-right: 8px; }
         .drug-name { color: #334155; font-weight: 500; }
-        /* ปรับสไตล์ปุ่มให้ดูเหมือนปุ่ม "เปิดดู" มากขึ้น */
+        
         .view-link {
             background-color: var(--accent-color);
             color: white;
@@ -62,8 +69,18 @@
             border-radius: 6px;
             font-size: 0.85em;
             transition: 0.2s;
+            font-weight: 500;
         }
         .view-link:hover { background-color: #00695c; }
+
+        /* สไตล์สำหรับปุ่มที่ยังไม่พร้อมใช้งาน */
+        .btn-disabled {
+            background-color: var(--disabled-color);
+            color: #7f8c8d;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .footer { text-align: center; margin-top: 40px; color: #64748b; font-size: 0.85em; }
     </style>
 </head>
@@ -72,53 +89,53 @@
 <div class="container">
     <div class="header">
         <h1>Working Formula สำหรับการเตรียมยา</h1>
-        <p>กลุ่มงานเภสัชกรรม โรงพยาบาลท่าศาลา</p>
+        <p class="hospital-name">กลุ่มงานเภสัชกรรม โรงพยาบาลท่าศาลา</p>
     </div>
 
     <div class="category-block">
         <div class="category-title">1. ยาเตรียมเฉพาะราย (ยารับประทาน)</div>
         <ul>
-            <li><span class="drug-name">1.1 Chloral hydrate syrup (500 mg/5ml)</span><a href="WF chloral hydrate syr. update 19-12-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.2 Magnesium Chloride syrup 10% (MgCl2)</span><a href="WF 10 Magnesium Chloride syr update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.3 Hydrochlorothiazide suspension (HCTZ) (10 mg/ml)</span><a href="WF Hydrochlorothiazide susp. update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.4 Paraben conc. (Preservative)</span><a href="WF Paraben conc update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.5 Spironolactone suspension (10 mg/ml)</span><a href="WF Spironolactone susp. update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.6 Vehicle Type 3</span><a href="WF Vehicle Type 3 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">1.7 Vehicle Type 4</span><a href="WF Vehicle Type 4 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.1</span><span class="drug-name">Chloral hydrate syrup (500 mg/5ml)</span></span><a href="WF chloral hydrate syr. update 19-12-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.2</span><span class="drug-name">Magnesium Chloride syrup 10% (MgCl2)</span></span><a href="WF 10 Magnesium Chloride syr update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.3</span><span class="drug-name">Hydrochlorothiazide suspension (HCTZ) (10 mg/ml)</span></span><a href="WF Hydrochlorothiazide susp. update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.4</span><span class="drug-name">Paraben conc. (Preservative)</span></span><a href="WF Paraben conc update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.5</span><span class="drug-name">Spironolactone suspension (10 mg/ml)</span></span><a href="WF Spironolactone susp. update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.6</span><span class="drug-name">Vehicle Type 3</span></span><a href="WF Vehicle Type 3 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">1.7</span><span class="drug-name">Vehicle Type 4</span></span><a href="WF Vehicle Type 4 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
         </ul>
     </div>
 
     <div class="category-block">
         <div class="category-title">2. ยาหยอดตาปราศจากเชื้อ</div>
         <ul>
-            <li><span class="drug-name">2.1 Amikacin eye drop 2% (20 mg/ml)</span><a href="WF Amikacin eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.2 Amphotericin B eye drop 0.15% (1.5 mg/ml)</span><a href="WF Amphotericin B eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.3 Atropine eye drop 0.02%</span><a href="working formula 0.02 atropine eye drop update 03-03-69.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.4 Cefazolin eye drop 5% (50 mg/ml)</span><a href="WF Cefazolin eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.5 Ceftazidime eye drop 5% (50 mg/ml)</span><a href="WF Ceftazidime eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.6 Dexamethasone eye drop 0.01% (0.1 mg/ml)</span><a href="WF Dexamethasone eye drop 0.01 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.7 Dexamethasone eye drop 0.02% (0.2 mg/ml)</span><a href="WF Dexamethasone eye drop 0.02 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.8 Gentamicin eye drop (14 mg/ml)</span><a href="WF Gentamicin eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.9 3% NaCl eye drop</span><a href="WF 3 NaCl eye drop update 28-09-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.10 2.5% Phenylephrine + 0.75% Tropicamide eye drop (multiple dose)</span><a href="WF 2.5 Tropicamide eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">2.11 Vancomycin eye drop 5% (50 mg/ml)</span><a href="WF Vancomycin eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.1</span><span class="drug-name">Amikacin eye drop 2% (20 mg/ml)</span></span><a href="WF Amikacin eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.2</span><span class="drug-name">Amphotericin B eye drop 0.15% (1.5 mg/ml)</span></span><a href="WF Amphotericin B eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.3</span><span class="drug-name">Atropine eye drop 0.02%</span></span><a href="working formula 0.02 atropine eye drop update 03-03-69.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.4</span><span class="drug-name">Cefazolin eye drop 5% (50 mg/ml)</span></span><a href="WF Cefazolin eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.5</span><span class="drug-name">Ceftazidime eye drop 5% (50 mg/ml)</span></span><a href="WF Ceftazidime eye drop  update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.6</span><span class="drug-name">Dexamethasone eye drop 0.01% (0.1 mg/ml)</span></span><a href="WF Dexamethasone eye drop 0.01 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.7</span><span class="drug-name">Dexamethasone eye drop 0.02% (0.2 mg/ml)</span></span><a href="WF Dexamethasone eye drop 0.02 update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.8</span><span class="drug-name">Gentamicin eye drop (14 mg/ml)</span></span><a href="WF Gentamicin eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.9</span><span class="drug-name">3% NaCl eye drop</span></span><a href="WF 3 NaCl eye drop update 28-09-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.10</span><span class="drug-name">2.5% Phenylephrine + 0.75% Tropicamide eye drop</span></span><a href="WF 2.5 Tropicamide eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">2.11</span><span class="drug-name">Vancomycin eye drop 5% (50 mg/ml)</span></span><a href="WF Vancomycin eye drop update 25-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
         </ul>
     </div>
 
     <div class="category-block">
         <div class="category-title">3. ยาใช้ภายนอก</div>
         <ul>
-            <li><span class="drug-name">3.1 Premarin Cream (CON. ESTROGEN)</span><a href="WF premarin cream update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">3.2 20% TCA Topical solution</span><a href="WF TCA 20 update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">3.3 50% TCA Topical solution</span><a href="WF TCA 50 update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">3.1</span><span class="drug-name">Premarin Cream (CON. ESTROGEN)</span></span><a href="WF premarin cream update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">3.2</span><span class="drug-name">20% TCA Topical solution</span></span><a href="WF TCA 20 update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">3.3</span><span class="drug-name">50% TCA Topical solution</span></span><a href="WF TCA 50 update 26-04-68.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
         </ul>
     </div>
 
     <div class="category-block">
         <div class="category-title">4. ยาฉีดปราศจากเชื้อ</div>
         <ul>
-            <li><span class="drug-name">4.1 Adrenaline prefilled syringe (เด็ก)</span><a href="working formula Adrenaline prefilled syringe สำหรับเด็ก.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
-            <li><span class="drug-name">4.2 Adrenaline prefilled syringe (ผู้ใหญ่)</span><a href="working formula Adrenaline prefilled syringe สำหรับผู้ใหญ่.pdf" class="view-link" target="_blank">เปิดดูไฟล์</a></li>
+            <li><span><span class="drug-number">4.1</span><span class="drug-name">Adrenaline prefilled syringe (เด็ก)</span></span><a href="#" class="view-link btn-disabled">ยังไม่เปิดใช้</a></li>
+            <li><span><span class="drug-number">4.2</span><span class="drug-name">Adrenaline prefilled syringe (ผู้ใหญ่)</span></span><a href="#" class="view-link btn-disabled">ยังไม่เปิดใช้</a></li>
         </ul>
     </div>
 
